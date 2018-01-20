@@ -8,7 +8,7 @@ class SceneEnd extends GuaScene {
   }
   draw(){
     this.game.ctx.font = '40px serif'
-    this.game.ctx.fillText('Game Over!', 160, 200)
-    this.game.ctx.fillText('Press R Back To Title', 100, 250)
+    this.game.ctx.fillText('Game Over!', 100, 200)
+    this.game.ctx.fillText('Press R Back To Title',10, 250)
   }
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>game 1</title>
+  <style media="screen">
+      canvas {
+        border: 1px solid black
+      }
+  </style>
+</head>
+<script src="utils.js"></script>
+<script src="levels.js"></script>
+
+<body>
+  <canvas id="canvas" width="400" height="600"></canvas>
+  <div class="config">
+  </div>
+ <script src="game/game.js"></script>
+ <script src="game/gua_scene.js"></script>
+ <script src="game/gua_image.js"></script>
+ <script src = "main.js"></script>
+  <script src="scene/main/ball.js"></script>
+  <script src="scene/main/block.js"></script>
+  <script src="scene/main/paddle.js"></script>
+  <script src="scene/main/scene.js"></script>
+  <script src="scene/end/scene_end.js"></script>
+  <script src="scene/title/title.js"></script>
+  <script>
+    var se = el => document.querySelectorAll(el)
+    var bindAll = function(el, event, callback) {
+      var els = se(el)
+      for(var i = 0; i < els.length; i++) {
+        var e = els[i]
+        e.addEventListener(event, function(event) {
+          callback(event)
+        })
+      }
+    }
+
+    var createEles = function(data_value, text, input_value, max, min) {
+      var div = document.createElement('div')
+      var label = document.createElement('label')
+      var input = document.createElement('input')
+      var span = document.createElement('span')
+      var textnode = document.createTextNode(text)
+
+      input.classList.add('gua-auto-slider')
+      input.type = 'range'
+      input.dataset.value = data_value
+      input.value = input_value
+      input.min = min
+      input.max = max
+
+      span.classList.add('gua-label')
+      span.innerText = input_value
+      label.appendChild(input)
+      label.appendChild(textnode)
+      label.appendChild(span)
+      div.appendChild(label)
+      var configdiv = document.querySelector('.config')
+      configdiv.appendChild(div)
+    }
+
+    var configs = Object.keys(config)
+    for(var i = 0; i < configs.length; i++) {
+      var key = configs[i]
+      var c = config[key]
+      var {value, min, max, text} = c
+      var data_value = 'config.' + key
+      createEles(data_value, text, value, max, min)
+    }
+    bindAll('.gua-auto-slider', 'input', function(event) {
+      var target = event.target
+      var value = target.value
+      var data_value = target.dataset.value
+      eval(data_value + "=" + value)
+      var gua_label = target.closest('label').querySelector('.gua-label')
+      gua_label.innerText = value
+    })
+  </script>
+</body>
+</html>

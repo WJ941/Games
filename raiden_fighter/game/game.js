@@ -11,9 +11,12 @@ class Game {
     this.runCallback = runCallback
     this.init()
   }
-  
-  drawImage(paddle) {
-    this.ctx.drawImage(paddle.image, paddle.x, paddle.y)
+  imageByName(name) {
+    var image = this.images[name]
+    return image
+  }
+  drawImage(gua_image) {
+    this.ctx.drawImage(gua_image.textture, gua_image.x, gua_image.y)
   }
   registerEvent(key, callback) {
     this.actions[key] = callback
@@ -43,7 +46,6 @@ class Game {
       }
     })
   }
-
   runloop() {
     var actions = Object.keys(this.actions)
     for(var i = 0; i<= actions.length; i++) {
@@ -62,14 +64,6 @@ class Game {
   }
 
 
-  imageByName(name) {
-    var image = this.images[name]
-    return {
-      image: image,
-      w: image.width,
-      h: image.height,
-    }
-  }
   run() {
     this.runCallback(this)
     var self = this

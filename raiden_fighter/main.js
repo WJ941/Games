@@ -18,11 +18,6 @@ var loadLevel = function(game, n) {
       return
     }
 
-    // 拖动滑块调价fps
-    document.querySelector("#id-input-speed").addEventListener('input', function(event){
-      log(event.target.value)
-      window.fps = event.target.value
-    })
     // 按键p暂停恢复游戏
     window.addEventListener('keydown', function(event){
       var key = event.key
@@ -37,9 +32,15 @@ var loadLevel = function(game, n) {
 
   var _main = function() {
     var images = {
-      ball: "img/ball.png",
-      block: "img/block.png",
-      paddle: "img/paddle.png",
+      sea: "img/sea.png",
+      player: "img/fighter.png",
+      cloud: "img/cloud.png",
+      player_bullet: "img/player_bullet.png",
+      enemy_bullet :"img/enemy_bullet.png",
+      enemy0 :"img/enemy0.png",
+      enemy1 :"img/enemy1.png",
+      enemy2 :"img/enemy2.png",
+      spark: "img/spark.png",
     }
     var game = new Game(60, images, function(game){
       var scene = new SceneTitle(game)

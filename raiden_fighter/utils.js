@@ -42,8 +42,8 @@ var guaImageCollide = function(guaImageA, guaImageB) {
     return {
       x: guaImage.x,
       y: guaImage.y,
-      width: guaImage.image.width,
-      height: guaImage.image.height,
+      width: guaImage.textture.width,
+      height: guaImage.textture.height,
     }
   }
   return   rectsCollide(createRect(guaImageA), createRect(guaImageB))
